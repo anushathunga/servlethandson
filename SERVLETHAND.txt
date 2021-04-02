@@ -1,0 +1,266 @@
+index.html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/FirServlet">
+name:<input type="text" name="n1"><br/>
+<input type="submit" value="click here">
+</body>
+</html>
+
+**FirServlet.java
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class FirServlet
+ */
+@WebServlet("/FirServlet")
+public class FirServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FirServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html");
+PrintWriter pw=response.getWriter();
+RequestDispatcher rd=request.getRequestDispatcher("/SecoServlet");
+rd.forward(request,response);
+}
+
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+}
+
+}
+
+
+**Secoservlet.java
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecoServlet
+ */
+@WebServlet("/SecoServlet")
+public class SecoServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SecoServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html");
+PrintWriter pw=response.getWriter();
+String name=request.getParameter("n1");
+pw.println("welcome"+name);
+}
+
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+}
+
+}
+........................................................................................................
+pet.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/PetServlet">
+firstname:<input type="text" name="n1"><br/>
+lastname:<input type="text" name="n2"><br/>
+address:<input type="text" name="n3"><br/>
+emailid:<input type="text" name="n4"><br/>
+city:<input type="text" name="n5"><br/>
+state:<input type="text" name="n6"><br/>
+petname:<input type="text" name="n7"><br/>
+phoneno:<input type="text" name="n8"><br/>
+pettype:<input type="text" name="n9"><br/>
+petage:<input type="text" name="n10"><br/>
+
+<br/>
+<input type="submit" value="click here">
+
+</form>
+
+</body>
+</html>
+
+**Petservlet.java
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class PetServlet
+ */
+@WebServlet("/PetServlet")
+public class PetServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PetServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html");
+PrintWriter pw=response.getWriter();
+String firstname=request.getParameter("n1");
+pw.println(firstname+"<br/>");
+String lastname=request.getParameter("n2");
+pw.println(lastname+"<br/>");
+String address=request.getParameter("n3");
+pw.println(address+"<br/>");
+String emailid=request.getParameter("n4");
+pw.println(emailid+"<br/>");
+String city=request.getParameter("n5");
+pw.println(city+"<br/>");
+String state=request.getParameter("n6");
+pw.println(state+"<br/>");
+String petname=request.getParameter("n7");
+pw.println(petname+"<br/>");
+int phoneno=Integer.parseInt(request.getParameter("n8"));
+pw.println(phoneno+"<br/>");
+String pettype=request.getParameter("n9");
+pw.println(pettype+"<br/>");
+int petage=Integer.parseInt(request.getParameter("n10"));
+pw.println(petage+"<br/>");
+}
+
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+}
+
+}
+.........................................................................................................
+login.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/Loginservlet">
+username:<input type="text" name="n1"><br/>
+password:<input type="password" name="n2"><br/>
+<br/>
+<input type="submit" value="SignIn">
+<input type="submit" value="LogOut">
+
+</body>
+</html>
+
+**Loginservlet.java
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/Loginservlet">
+username:<input type="text" name="n1"><br/>
+password:<input type="password" name="n2"><br/>
+<br/>
+<input type="submit" value="SignIn">
+<input type="submit" value="LogOut">
+
+</body>
+</html>
+
+success.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p>success</p>
+</body>
+</html>
+
+fail.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p>fail</p>
+</body>
+</html>
