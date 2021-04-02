@@ -171,26 +171,46 @@ private static final long serialVersionUID = 1L;
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 response.setContentType("text/html");
 PrintWriter pw=response.getWriter();
-String firstname=request.getParameter("n1");
-pw.println(firstname+"<br/>");
-String lastname=request.getParameter("n2");
-pw.println(lastname+"<br/>");
-String address=request.getParameter("n3");
-pw.println(address+"<br/>");
-String emailid=request.getParameter("n4");
-pw.println(emailid+"<br/>");
-String city=request.getParameter("n5");
-pw.println(city+"<br/>");
-String state=request.getParameter("n6");
-pw.println(state+"<br/>");
-String petname=request.getParameter("n7");
-pw.println(petname+"<br/>");
-int phoneno=Integer.parseInt(request.getParameter("n8"));
-pw.println(phoneno+"<br/>");
-String pettype=request.getParameter("n9");
-pw.println(pettype+"<br/>");
-int petage=Integer.parseInt(request.getParameter("n10"));
-pw.println(petage+"<br/>");
+String fname=request.getParameter("firstname");
+request.setAttribute("firstname", fname);
+String lname=request.getParameter("lastname");
+request.setAttribute("lastname", lname);
+String addr=request.getParameter("address");
+request.setAttribute("address", addr);
+String emailid=request.getParameter("emailid");
+request.setAttribute("emailid", emailid);
+String city=request.getParameter("city");
+request.setAttribute("city", city);
+String state=request.getParameter("state");
+request.setAttribute("state", state);
+String petname=request.getParameter("petname");
+request.setAttribute("petname", petname);
+String phonenumber=request.getParameter("phonenumber");
+request.setAttribute("phonenumber", phonenumber);
+String pettype=request.getParameter("pettype");
+request.setAttribute("pettype", pettype);
+String petsage=request.getParameter("petage");
+request.setAttribute("petage", petsage);
+System.out.println("First Name: "+fname);
+System.out.println("Last Name: "+lname);
+System.out.println("Address: "+addr);
+System.out.println("Email ID: "+emailid);
+System.out.println("City: "+city);
+System.out.println("State: "+state);
+System.out.println("Pet Name: "+petname);
+System.out.println("Phone Number: "+phonenumber);
+System.out.println("Pet Type: "+pettype);
+System.out.println("Pets Age: "+petage);
+pw.println("First Name: "+request.getAttribute("firstname")+"<br/>");
+pw.println("Last Name: "+request.getAttribute("lastname")+"<br/>");
+pw.println("Address: "+request.getAttribute("address")+"<br/>");
+pw.println("Email ID: "+request.getAttribute("emailid")+"<br/>");
+pw.println("City: "+request.getAttribute("city")+"<br/>");
+pw.println("State: "+request.getAttribute("state")+"<br/>");
+pw.println("Pet Name: "+request.getAttribute("petname")+"<br/>");
+pw.println("Phone Number: "+request.getAttribute("phonenumber")+"<br/>");
+pw.println("Pet Type: "+request.getAttribute("pettype")+"<br/>");
+pw.println("Pets Age: "+request.getAttribute("petage")+"<br/>");
 }
 
 /**
@@ -222,22 +242,62 @@ password:<input type="password" name="n2"><br/>
 
 **Loginservlet.java
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<form action="http://localhost:8080/J2EEProject/Loginservlet">
-username:<input type="text" name="n1"><br/>
-password:<input type="password" name="n2"><br/>
-<br/>
-<input type="submit" value="SignIn">
-<input type="submit" value="LogOut">
+package com.pack;
 
-</body>
-</html>
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Loginservlet
+ */
+@WebServlet("/Loginservlet")
+public class Loginservlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Loginservlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html");
+PrintWriter pw=response.getWriter();
+String username=request.getParameter("n1");
+pw.println(username+"<br/>");
+String password=request.getParameter("n1");
+pw.println(password+"<br/>");
+if(username=="admin"&&password=="abcd1234") {
+RequestDispatcher rd=request.getRequestDispatcher("/success.html");
+rd.forward(request,response);
+}
+else {
+RequestDispatcher rd=request.getRequestDispatcher("/fail.html");
+rd.forward(request,response);
+}
+}
+
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+}
+
+}
+
+
 
 success.html
 
